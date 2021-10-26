@@ -6,6 +6,7 @@ struct Rational {
     int denom = 1;
 };
 
+// SLOW LINEAR VERSION
 // long double is 16 bytes on my machine, more than enough.
 Rational get_approximation(int max_denominator, long double real) {
     /* Let's check a bunch of nearby values, and remember which one was the best.
@@ -49,6 +50,8 @@ Rational get_approximation(int max_denominator, long double real) {
 
     return {best_n, best_d};
 }
+
+
 
 int main() {
     int n_trials {}; 
