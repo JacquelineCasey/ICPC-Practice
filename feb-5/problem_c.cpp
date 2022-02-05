@@ -1,3 +1,4 @@
+/* https://open.kattis.com/contests/nar21practice3/problems/countingclauses */
 
 #include <iostream>
 

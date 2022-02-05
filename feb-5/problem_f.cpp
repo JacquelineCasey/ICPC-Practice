@@ -1,3 +1,4 @@
+/* https://open.kattis.com/contests/nar21practice3/problems/fishmongers */
 
 #include <iostream>
 #include <vector>
