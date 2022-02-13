@@ -6,12 +6,12 @@
  * We do this by building up the solution from one stone to many stones.
  * To add each stone: find the lowest empty pit, and fill it with one stone taken
  * from each previous pit, and one new stone. To solve this situation, the first
- * move is from this new pit, which places the new stone in the rumba and adds 
+ * move is from this new pit, which places the new stone in the roumba and adds 
  * one stone to all lower pits, placing the board in a state that we know how to
  * solve.
  * 
  * Note that we only ever need to do up to 2000 stones, with a gaurantee of that
- * taking 80 or fewer pits, so this algorithm (which is something like O(n stones * p pits)
+ * taking 80 or fewer pits, so this algorithm (which is something like O(n stones * p pits))
  * is actually quite reasonable (even if there are 200 data sets).
  */
 
