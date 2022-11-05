@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <climits>
 
 
 
@@ -15,36 +16,45 @@ int main() {
     std::vector<std::vector<long long>> DP (k+1, std::vector<long long>(n, 0));
     std::vector<long long> A (n, 0);
 
-    // std::vector<long long> left_to_right (n, 0);
-    // std::vector<long long> right_to_left (n, 0);
 
+    std::vector<int> start_indices (n, 0);
 
     for (int i {}; i < n; i++)
         std::cin >> A[i];
 
     for (int k_curr {1}; k_curr <= k; k_curr ++) {
         for (int j {0}; j < n; j++) {
-            long long max {-1000000000};
+            /* Compute DP[k_curr][j] */
+
+            long long max {LLONG_MIN / 2}; // Basically -infinity. Needs to not overflow.
             long long sum {0};
-            for (int i {j}; i >= 0; i--) {
-                // std::cout << sum << '\n';
+
+            int stop = start_indices[j];
+            int new_stop = j;
+            for (int i {j}; i >= stop; i--) {
                 sum += A[i];
                 if (k_curr != 1 && i != 0) {
-                    max = std::max(sum + DP[k_curr -1][i - 1], max);
+                    if (sum + DP[k_curr -1][i - 1] >= max) {
+                        max = sum + DP[k_curr -1][i - 1];
+                        new_stop = i;
+                    }
                 }
                 else if (k_curr == 1) {
                     max = std::max(max, sum);
+                    new_stop = 0;
                 }
-                // std::cout << max << '\n';
-            }       
+            }
+
+            start_indices[j] = new_stop;
+
 
             if (j != 0) {
                 max = std::max(max, DP[k_curr][j - 1]);
             }
 
-            // std::cout << "DP[" << k_curr << "][" << j << "] = " << max << "\n";
+            // std::cout << "DP[" << k_curr << "][" << j << "] = " << max << '\n';
+            // std::cout << new_stop << '\n';
             DP[k_curr][j] = max;
-
         }
     }
 
