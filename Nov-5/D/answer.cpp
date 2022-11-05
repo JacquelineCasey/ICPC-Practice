@@ -29,6 +29,10 @@ int main() {
             long long max {LLONG_MIN / 2}; // Basically -infinity. Needs to not overflow.
             long long sum {0};
 
+            if (j > 0 && start_indices[j-1] > start_indices[j]) {
+                start_indices[j] = start_indices[j-1];
+            }
+
             int stop = start_indices[j];
             int new_stop = j;
             for (int i {j}; i >= stop; i--) {
