@@ -27,7 +27,7 @@ int main() {
         
         /* For hacky reason, we interpret DP[k_curr] and DP[k_curr - 1] differently here.
          * DP[k_curr][i] requires its answer to use A[i]. DP[k_curr - 1][i] does not. 
-         * After we computer DP[k_curr] completely, we update it in one pass to 
+         * After we compute DP[k_curr] completely, we update it in one pass to 
          * use the second interpretation.
          * 
          * Could this be done more clearly using seperate vectors... yes.
