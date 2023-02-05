@@ -1,0 +1,44 @@
+https://open.kattis.com/contests/naq22open/problems/tollroads
+
+It's fascinating IMO. You run Kruskal's but with a modified Union Find Data Structure.
+- No Path Compression
+- Yes Union by Rank (only for height balancing the resulting tree / runtime)
+- Store the current edge weight in the node who updates its parent (one of the old
+  representers / leaders / whatever we call these)
+- Store the count of nodes under each node (you can just add)
+
+You can actually throw away the MST now. You should note however that you only
+care about edges that ended up in the MST. The minimum weight spanning tree also 
+happens to be the spanning tree that minimizes the maximum edge weight along any
+path between two nodes within the tree, which is an interesting property in and of
+itself.
+
+Now we want two operations:
+
+minimum_toll():
+ - Locate the first common ancestor of the two cities in the union find structure.
+ - Return the max value of the edge weight stored within the two nodes after the 
+   ancestor on the paths down to the cities in question.
+ - Edge case: one of the cities is the ancestor. Then just return the value of the
+   relevant child of that ancestor.
+ - Edge case: Cities don't connect. I suspect this never happens.
+
+cities_reached():
+ - Locate that ancestor again. Actually, you may want to go even higher if you can,
+   so long as the connecting edge has equal weight to the minimum_toll.
+ - Return the count at that ancestor.
+
+Analysis:
+These problems work because there are seemingly two bad options with quadratic time.
+You either do no precompute and linear time per query, which doesn't work. Otherwise, 
+you do quadratic precompute and constant time per query, which also doesn't work.
+Then, due to use of a clever data structure, you can do O(N log N) precompute and 
+O(log N) time per query, which ends up being enough.
+
+Kruskals is O(N log N) (I'm lazy, let N be the max of m, n, q). You need union by 
+rank to get there. Path compression would also help, but that would destroy the 
+structure we want. Storing the count of nodes is instant, because you can just 
+add the child.
+
+The union find is height balanced, so you can identify the ancestor in log N time.
+Answering all queries is therefore O(N log N). O(n + m log m + q log m), I think.
