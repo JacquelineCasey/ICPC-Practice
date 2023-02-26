@@ -70,5 +70,6 @@
         "thread": "cpp",
         "variant": "cpp",
         "__split_buffer": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
