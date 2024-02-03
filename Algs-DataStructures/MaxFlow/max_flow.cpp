@@ -137,7 +137,7 @@ std::pair<int, std::vector<int>> BFS(const graph& G, int source, int target) {
 }
 
 // O(V E^2), but also O(E f) (whichever is better). Probably a bit slower in
-// the O(E f) case?
+// the O(E f) case, by a constant factor?
 std::pair<int, graph> edmonds_karp(const graph& G, int source, int sink) {
     int n  {static_cast<int>(G.size())};
     graph flow_graph (n, std::unordered_map<int, int> {});
