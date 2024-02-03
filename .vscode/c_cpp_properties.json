@@ -10,7 +10,7 @@
             "compilerPath": "/usr/local/bin/gcc-11",
             "cStandard": "gnu17",
             "intelliSenseMode": "macos-gcc-x64",
-            "cppStandard": "gnu++17"
+            "cppStandard": "gnu++20"
         }
     ],
     "version": 4

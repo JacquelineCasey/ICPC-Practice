@@ -69,7 +69,12 @@
         "ratio": "cpp",
         "thread": "cpp",
         "variant": "cpp",
-        "__split_buffer": "cpp"
+        "__split_buffer": "cpp",
+        "__verbose_abort": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "optional": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
